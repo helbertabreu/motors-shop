@@ -15,6 +15,12 @@ import {
 } from "../controllers/posts.controller";
 import { ensurePostExistsAndOwnershipMiddleware } from "../middlewares/ensurePostExistsAndOwnerShip.middleware";
 import { ensureTokenIsOwnerPostMiddleware } from "../middlewares/ensureTokenIsOwnerPost.middleware";
+import { commentRequestSerializer } from "../serializers/comment.serializer";
+import {
+  createCommentController,
+  deleteCommentController,
+  updateCommentController,
+} from "../controllers/comments.controller";
 
 export const postsRoutes = Router();
 
@@ -43,3 +49,24 @@ postsRoutes.patch(
   updatePostController
 );
 postsRoutes.patch("/:id/delist", ensureAuthMiddleware, delistPostController);
+
+// Comments routes
+postsRoutes.post(
+  "/:id/comments",
+  ensureAuthMiddleware,
+  ensureDataIsValidMiddleware(commentRequestSerializer),
+  createCommentController
+);
+
+postsRoutes.delete(
+  "/comments/:id",
+  ensureAuthMiddleware,
+  deleteCommentController
+);
+
+postsRoutes.patch(
+  "/comments/:id",
+  ensureAuthMiddleware,
+  ensureDataIsValidMiddleware(commentRequestSerializer),
+  updateCommentController
+);

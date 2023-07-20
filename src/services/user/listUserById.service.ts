@@ -15,6 +15,13 @@ export const listUserByIdService = async (userId: string) => {
     where: {
       id: userId,
     },
+    relations: {
+      posts: {
+        images: true,
+        comments: true,
+        user: true,
+      },
+    },
   });
 
   if (!foundUser) {
