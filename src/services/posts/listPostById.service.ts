@@ -16,6 +16,7 @@ export const listPostByIdService = async (
     relations: {
       user: true,
       images: true,
+      comments: true,
     },
   });
 

@@ -24,6 +24,7 @@ export const delistPostService = async (
     relations: {
       user: true,
       images: true,
+      comments: true,
     },
   });
 

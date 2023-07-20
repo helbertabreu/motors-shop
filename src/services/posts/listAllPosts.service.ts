@@ -12,6 +12,7 @@ export const listAllPostsService = async (): Promise<IPostResponse[]> => {
     relations: {
       user: true,
       images: true,
+      comments: true,
     },
   });
 

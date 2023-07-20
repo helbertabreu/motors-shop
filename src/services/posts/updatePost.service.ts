@@ -22,6 +22,7 @@ export const updatePostService = async (
     relations: {
       user: true,
       images: true,
+      comments: true,
     },
   });
 
