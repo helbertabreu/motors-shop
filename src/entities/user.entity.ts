@@ -78,4 +78,10 @@ export class User {
       this.password = hashSync(this.password, 10);
     }
   }
+
+  @Column({ nullable: true })
+  resetPasswordToken: string;
+
+  @Column({ nullable: true })
+  resetPasswordExpires: Date;
 }
