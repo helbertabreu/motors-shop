@@ -1,12 +1,16 @@
 import { Router } from "express";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
 import {
+  authTokenSendEmailController,
   createUserController,
   deleteUserController,
   listUserByIdController,
+  resetPasswordByTokenController,
   updateUserController,
 } from "../controllers/users.controller";
 import {
+  userForgotPasswordSerializer,
+  userRecoveryPasswordSerializer,
   userRequestSerializer,
   userUpdateSerializer,
 } from "../serializers/user.serializers";
@@ -27,3 +31,16 @@ userRoutes.patch(
   ensureDataIsValidMiddleware(userUpdateSerializer),
   updateUserController
 );
+userRoutes.get("/profile/:id", listUserByIdController);
+
+userRoutes.post(
+  "/forgot",
+  ensureDataIsValidMiddleware(userRecoveryPasswordSerializer),
+  resetPasswordByTokenController
+);
+userRoutes.post(
+  "/reset/:token",
+  ensureDataIsValidMiddleware(userForgotPasswordSerializer),
+  resetPasswordByTokenController
+);
+userRoutes.get("/authentication/:token", authTokenSendEmailController);

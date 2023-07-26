@@ -1,6 +1,8 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
 import {
+  IUserForgotPasswordRequest,
+  IUserRecoveryPasswordRequest,
   IUserRequest,
   IUserResponse,
   IUserUpdate,
@@ -65,3 +67,13 @@ export const userUpdateSerializer: SchemaOf<IUserUpdate> = yup.object().shape({
     .notRequired(),
   address: addressUpdateSerializer.notRequired(),
 }) as unknown as SchemaOf<IUserUpdate>;
+
+export const userRecoveryPasswordSerializer: SchemaOf<IUserRecoveryPasswordRequest> =
+  yup.object().shape({
+    email: yup.string().email().required(),
+  });
+
+export const userForgotPasswordSerializer: SchemaOf<IUserForgotPasswordRequest> =
+  yup.object().shape({
+    password: yup.string().required(),
+  });

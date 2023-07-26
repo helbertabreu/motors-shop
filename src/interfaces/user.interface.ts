@@ -44,3 +44,11 @@ export interface IUserUpdate {
   typeOfAccount?: AccountType;
   address?: IAddressUpdate;
 }
+
+export interface IUserRecoveryPasswordRequest {
+  email: string;
+}
+
+export interface IUserForgotPasswordRequest {
+  password: string;
+}
