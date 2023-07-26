@@ -10,9 +10,9 @@ const AppDataSourceConfig = (): DataSourceOptions => {
     "./migrations/*.{ts,js}"
   );
 
-  const nodeEnv: string = process.env.NODE_ENV || "";
+  const nodeEnv: string = process.env.NODE_ENV;
 
-  if (nodeEnv == "production") {
+  if (nodeEnv === "production") {
     return {
       type: "postgres",
       url: process.env.DATABASE_URL,
